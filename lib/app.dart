@@ -1,3 +1,4 @@
+import 'package:community/core/routes/route_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/bloc/bloc_providers.dart';
@@ -35,6 +36,7 @@ class MaterialAppBuilder extends StatelessWidget {
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       themeMode: themeMode,
+      navigatorKey: RouteService.navigatorKey,
       home: AuthChecker(storage: storage),
     );
   }

@@ -1,38 +1,18 @@
 import 'package:community/core/theme/app_colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'core_widgets.dart';
-
-Widget t14(BuildContext context, String title) => commonText(title, size: 14);
-
-Widget t16(BuildContext context, String title) => commonText(title, size: 16);
-
-Widget t14b600TextPrimary(BuildContext context, String title) => commonText(
-  title,
-  size: 14,
-  fontWeight: FontWeight.w600,
-  color: Theme.of(context).colorScheme.onSurface,
-);
-
-Widget t18bTextPrimary(BuildContext context, String title) => commonText(
-  title,
-  size: 18,
-  fontWeight: FontWeight.bold,
-  color: Theme.of(context).colorScheme.onSurface,
-);
-
-Widget t18bTextOnPrimary(BuildContext context, String title) => commonText(
-  title,
-  size: 18,
-  fontWeight: FontWeight.bold,
-  color: Theme.of(context).colorScheme.onPrimary,
-);
-
 
 class CustomButton extends StatelessWidget {
   final String text;
   final void Function()? onPressed;
+  Color backgroundColor;
 
-  const CustomButton({super.key, required this.text, required this.onPressed});
+  CustomButton({
+    super.key,
+    required this.text,
+    required this.onPressed,
+    this.backgroundColor = AppColors.primary,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -42,14 +22,18 @@ class CustomButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primary,
+          backgroundColor: backgroundColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
         ),
         child: Text(
           text,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          style: const TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
       ),
     );
@@ -82,6 +66,82 @@ class CustomTextField extends StatelessWidget {
         filled: true,
         fillColor: Theme.of(context).colorScheme.surface,
       ),
+    );
+  }
+}
+
+class AppConfirmationDialog extends StatelessWidget {
+  final String title;
+  final String message;
+  final String confirmText;
+  final String cancelText;
+  final VoidCallback onConfirm;
+  final bool isDestructive;
+
+  const AppConfirmationDialog({
+    super.key,
+    required this.title,
+    required this.message,
+    required this.onConfirm,
+    this.confirmText = 'Confirm',
+    this.cancelText = 'Cancel',
+    this.isDestructive = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return CupertinoAlertDialog(
+      title: Text(
+        title,
+        style: TextStyle(
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+          color: theme.brightness == Brightness.dark
+              ? AppColors.darkText
+              : AppColors.lightText,
+        ),
+      ),
+      content: Text(
+        message,
+        style: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          color: theme.brightness == Brightness.dark
+              ? AppColors.darkText
+              : AppColors.lightText,
+        ),
+      ),
+      actions: [
+        CupertinoDialogAction(
+          onPressed: () => Navigator.pop(context),
+          child: Text(
+            cancelText,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: theme.brightness == Brightness.dark
+                  ? AppColors.darkText
+                  : AppColors.lightText,
+            ),
+          ),
+        ),
+        CupertinoDialogAction(
+          isDestructiveAction: isDestructive,
+          onPressed: () {
+            Navigator.pop(context);
+            onConfirm();
+          },
+          child: Text(
+            confirmText,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: AppColors.error,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

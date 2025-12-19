@@ -1,6 +1,7 @@
 import 'package:community/core/helpers/snack_bar_helper.dart';
 import 'package:community/core/widgets/custom_widgets.dart';
 import 'package:community/features/authenticaction/presentation/bloc/auth/auth_bloc.dart';
+import 'package:community/features/bottom_nav_bar/presentation/pages/bottom_nav_bar_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,16 +20,18 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login'),
-      ),
+      appBar: AppBar(title: const Text('Login')),
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is AuthFailure) {
             showSnackBar(context, state.message);
           } else if (state is AuthSuccess) {
-            showSnackBar(context, "Login Successful");
-            // Navigate to home page
+            
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (_) => const BottomNavBarPage()),
+              (_) => false,
+            );
           }
         },
         child: Padding(

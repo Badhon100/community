@@ -1,6 +1,7 @@
 import 'package:community/core/network/interceptors/auth_interceptors.dart';
 import 'package:community/core/theme/theme_cubit.dart';
 import 'package:community/di/dependencies.dart/auth_dependencies.dart';
+import 'package:community/di/dependencies.dart/profile_dependecies.dart';
 import 'package:community/features/bottom_nav_bar/presentation/bloc/bottom_nav_bar_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
@@ -51,4 +52,5 @@ Future<void> setupInjection() async {
 
   // Features
   authInjection(sl);
+  profileInjection(sl);
 }

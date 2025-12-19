@@ -1,10 +1,21 @@
 enum StorageKey {
-  authToken,
-  userId,
+  token,
+  userEmail,
+  darkMode,
   isLoggedIn,
-  themeMode,
 }
 
-extension StorageKeyX on StorageKey {
-  String get value => name;
+extension StorageKeyExtension on StorageKey {
+  String get value {
+    switch (this) {
+      case StorageKey.token:
+        return "token";
+      case StorageKey.userEmail:
+        return "userEmail";
+      case StorageKey.isLoggedIn:
+        return "isLoggedIn";
+      case StorageKey.darkMode:
+        return "darkMode";
+    }
+  }
 }

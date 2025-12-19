@@ -1,6 +1,6 @@
 import 'package:community/core/network/api_service.dart';
 import 'package:community/core/network/network_info.dart';
-import 'package:community/core/storage/shared_pref_service.dart';
+import 'package:community/core/storage/secure_storage_service.dart';
 import 'package:community/features/authenticaction/data/data_sources/auth_remote_data_source.dart';
 import 'package:community/features/authenticaction/data/repositories/auth_repository_impl.dart';
 import 'package:community/features/authenticaction/domain/repositories/auth_repository.dart';
@@ -18,7 +18,7 @@ void authInjection(GetIt sl) {
     () => AuthRepositoryImpl(
       remoteDataSource: sl(),
       networkInfo: sl<NetworkInfo>(),
-      pref: sl<SharedPrefService>(),
+      storage: sl<SecureStorageService>(),
     ),
   );
 

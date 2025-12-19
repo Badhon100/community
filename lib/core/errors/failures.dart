@@ -18,3 +18,7 @@ class AuthenticationFailure extends Failure {
   const AuthenticationFailure(super.message);
 }
 
+class UnknownFailure extends Failure {
+  const UnknownFailure(super.message);
+}
+

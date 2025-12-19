@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'app_colors.dart';
-import 'app_text_styles.dart';
 
 class DarkTheme {
   static ThemeData get theme {
@@ -15,28 +14,13 @@ class DarkTheme {
         error: AppColors.error,
         background: AppColors.darkBackground,
         surface: AppColors.darkSurface,
+        onSurface: AppColors.darkText,
       ),
 
       appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.darkSurface,
         foregroundColor: AppColors.darkText,
         elevation: 0,
-      ),
-
-      textTheme: const TextTheme(
-        headlineMedium: AppTextStyles.headline,
-        bodyMedium: AppTextStyles.body,
-      ),
-
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primary,
-          foregroundColor: Colors.white,
-          textStyle: AppTextStyles.button,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-        ),
       ),
 
       inputDecorationTheme: InputDecorationTheme(

@@ -1,18 +1,27 @@
 import 'package:dio/dio.dart';
-import '../../storage/shared_pref_service.dart';
+import '../../storage/secure_storage_service.dart';
 import '../../storage/storage_keys.dart';
 
 class AuthInterceptor extends Interceptor {
-  final SharedPrefService pref;
+  final SecureStorageService storage;
 
-  AuthInterceptor(this.pref);
+  AuthInterceptor(this.storage);
 
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    final token = pref.getString(StorageKey.authToken);
-    if (token != null && token.isNotEmpty) {
-      options.headers['Authorization'] = 'Bearer $token';
+  void onRequest(
+    RequestOptions options,
+    RequestInterceptorHandler handler,
+  ) async {
+    try {
+      final token = await storage.getString(StorageKey.token); // async
+      if (token != null && token.isNotEmpty) {
+        options.headers['Authorization'] = 'Bearer $token';
+      }
+    } catch (e) {
+      // optionally log error
+      print("AuthInterceptor error: $e");
     }
+
     super.onRequest(options, handler);
   }
 }

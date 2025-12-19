@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'app_colors.dart';
-import 'app_text_styles.dart';
 
 class LightTheme {
   static ThemeData get theme {
@@ -15,28 +14,13 @@ class LightTheme {
         error: AppColors.error,
         background: AppColors.lightBackground,
         surface: AppColors.lightSurface,
+        onSurface: AppColors.lightText,
       ),
 
       appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.lightSurface,
         foregroundColor: AppColors.lightText,
         elevation: 0,
-      ),
-
-      textTheme: const TextTheme(
-        headlineMedium: AppTextStyles.headline,
-        bodyMedium: AppTextStyles.body,
-      ),
-
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primary,
-          foregroundColor: Colors.white,
-          textStyle: AppTextStyles.button,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-        ),
       ),
 
       inputDecorationTheme: InputDecorationTheme(

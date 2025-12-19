@@ -1,3 +1,4 @@
+import 'package:community/core/constants/api_constants.dart';
 import 'package:dio/dio.dart';
 import '../models/community_model.dart';
 import '../../../../core/errors/exceptions.dart';
@@ -24,7 +25,7 @@ class CommunityRemoteDataSourceImpl implements CommunityRemoteDataSource {
   }) async {
     try {
       final response = await apiService.get(
-        '/student/community/getEnrolledCommunityList',
+        ApiConstants.getCommunityList,
         queryParameters: {
           'page': page,
           'limit': limit,

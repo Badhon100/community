@@ -1,5 +1,6 @@
 import 'package:community/features/bottom_nav_bar/presentation/bloc/bottom_nav_bar_bloc.dart';
 import 'package:community/features/bottom_nav_bar/presentation/widges/bottom_nav_bar.dart';
+import 'package:community/features/community/presentation/pages/community_page.dart';
 import 'package:community/features/profile/presentation/pages/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +15,7 @@ class BottomNavBarPage extends StatefulWidget {
 class _BottomNavBarPageState extends State<BottomNavBarPage> {
   final List<Widget> _pages = const [
     Center(child: Text('Home')),
-    Center(child: Text('Community')),
+    CommunityPage(),
     Center(child: Text('Schools')),
     Center(child: Text('Files')),
     ProfilePage(),

@@ -43,7 +43,8 @@ Future<void> setupInjection() async {
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
 
   // Theme Cubit
-  sl.registerLazySingleton(() => ThemeCubit());
+  SecureStorageService(const FlutterSecureStorage());
+  sl.registerLazySingleton(() => ThemeCubit(storage: sl()));
 
   //Bottom Nav Bar Bloc
   sl.registerFactory(() => BottomNavBarBloc());

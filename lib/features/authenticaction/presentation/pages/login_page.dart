@@ -3,7 +3,6 @@ import 'package:community/core/widgets/custom_widgets.dart';
 import 'package:community/features/authenticaction/presentation/bloc/auth/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/theme/theme_cubit.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -22,22 +21,6 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Login'),
-        actions: [
-          Row(
-            children: [
-              const Icon(Icons.light_mode),
-              Switch(
-                value: context.watch<ThemeCubit>().state == ThemeMode.dark,
-                onChanged: (_) {
-                  context.read<ThemeCubit>().toggleTheme();
-                },
-              ),
-
-              const Icon(Icons.dark_mode),
-            ],
-          ),
-          const SizedBox(width: 12),
-        ],
       ),
       body: BlocListener<AuthBloc, AuthState>(
         listener: (context, state) {
